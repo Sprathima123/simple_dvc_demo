@@ -3,10 +3,10 @@ name: Python application
 on:
   push:
     branches:
-    - main
+    - main-mlflow
   pull_request:
     branches:
-    - main
+    - main-mlflow
 
 jobs:
   build:
@@ -39,7 +39,7 @@ jobs:
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      if: github.ref == 'refs/heads/main' && job.status == 'success'
+      if: github.ref == 'refs/heads/main-mlflow' && job.status == 'success'
       run: |
         git remote add heroku1 https://heroku:9cbb83a2-fd65-47c6-8ccc-ee7e77eedc1d@git.heroku.com/wine-mlop-sapp.git
         git push heroku1 HEAD:main -f
